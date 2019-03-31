@@ -3,10 +3,8 @@ public class MyLinkedList<E>{
   private Node start,end;
 
   //constructor
-  public MyLinkedList() { //default MyLinkedList has no nodes
-    start = null;         //starting and ending nodes are null
-    end = null;
-    length = 0;           //default size is zero
+  public MyLinkedList() {
+    clear();
   }
 
   public String toString() {
@@ -20,21 +18,24 @@ public class MyLinkedList<E>{
     return "[" + ret.substring(0,ret.length()-2) + "]"; //gets rid of the extra ", ", adds brackets to surround
   }
 
-  public boolean add(int value) {
+  public void clear() {
+    start = null; //default: start and end have no nodes, are null, and size is 0;
+    end = null;
+    length = 0;
+  }
+
+
+  public boolean add(E value) {
     Node N = new Node(value);     //creates a new Node based off value
     length = length + 1;
-    if (length == 1) {         //if there are no existing nodes
+    if (length == 1) {            //if there are no existing nodes
       start = N;
+      end = N;
     }
-    if (length == 2) {           //if there is a previous node
-      end = N;                   //sets the end to the new Node
-      start.setNext(end);        //and has both nodes referencing each other
-      end.setPrev(start);
-    }
-    if (length >= 3) {
+    else {
       end.setNext(N);         //last node references the new node being added
-      N.setPrev(end);         //new node being added references previous last node
-      end = N;                //now the end node is the new node
+      N.setPrev(end);         //new node being added references the last node
+      end = N;                //now node is the last node
     }
     return true;
   }
