@@ -2,7 +2,7 @@ public class MyLinkedList<E>{
   private int length;
   private Node start,end;
 
-  public String toString() {
+  public String toString(){
     String ret = "";
     Node current = start;
     while (current != null) {
@@ -19,17 +19,16 @@ public class MyLinkedList<E>{
   }
 
   public void clear() {
-    start = null; //default: start and end have no nodes, are null, and size is 0;
+    start = null; //default: start and end have no nodes(null) and size is 0;
     end = null;
     length = 0;
   }
-
 
   public boolean add(E value) {
     Node N = new Node(value);     //creates a new Node based off value
     length = length + 1;
     if (length == 1) {            //if there are no existing nodes
-      start = N;
+      start = N;                  //both start and end nodes are the new Node
       end = N;
     }
     else {
@@ -41,31 +40,33 @@ public class MyLinkedList<E>{
   }
 
   public void extend(MyLinkedList<E> other) {
-    if (length == 0) {
+    if (length == 0) { //if current linkedlist is 0, basically copies over other
       start = other.start;
       end = other.end;
       length = other.length;
-      other.length = 0;
+      other.length = 0;  //other linkedlist is cleared
       other.start = null;
       other.end = null;
     } else {
-      end.setNext(other.start);
+      end.setNext(other.start);     //links start and end
       other.start.setPrev(this.end);
-      length = this.length + other.length;
-      other.length = 0;
-      end = other.end;
+      length = this.length + other.length; //length is total length of the two lists
+      end = other.end; //end is updated
+      other.length = 0;  //other linkedlist is cleared
       other.start = null;
       other.end = null;
     }
   }
 
+  //removes the first element of the list, returns the value
   public E removeFront() {
+    if (length == 0) throw new IndexOutOfBoundsException("the linkedlist is empty!"); //there are no nodes
     E removeVal = start.getData();
-    if (length = 1) {
+    if (length == 1) { //if there is only one node
       clear();
     } else {
-      start = start.next();
-      length = length -1;
+      start = start.next(); //set the start to the node after the original start
+      length = length -1;   //length decreases
     }
     return removeVal;
   }
@@ -106,7 +107,7 @@ public class MyLinkedList<E>{
     }
 
     public String toString() {
-      return "" + data;
+      return "" + val;
     }
   }
 
