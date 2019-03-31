@@ -59,16 +59,16 @@ public class MyLinkedList<E>{
     }
   }
 
-public boolean remove(Integer value) {
-  if (contains(value)) {            //checks if value is present
-    int I = indexOf(value);
-    System.out.println(I);
-    remove(I);
-    return true;                   //finds the index, removes that index, and returns true
+  public E removeFront() {
+    E removeVal = start.getData();
+    if (length = 1) {
+      clear();
+    } else {
+      start = start.next();
+      length = length -1;
+    }
+    return removeVal;
   }
-  return false;                   //false is returned otherwise
-}
-
 
 //NODE class
   public class Node{
