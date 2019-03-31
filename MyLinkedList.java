@@ -1,4 +1,4 @@
-public class MyLinkedList{
+public class MyLinkedList<E>{
   private int length;
   private Node start,end;
 
@@ -100,5 +100,46 @@ public boolean remove(Integer value) {
   }
   return false;                   //false is returned otherwise
 }
+
+
+//NODE class
+  public class Node{
+    private E val;
+    private Node next, prev;
+
+    public Node(E data) {
+      val = data;
+    }
+
+    public Node next() {
+      return next;
+    }
+
+    public Node prev() {
+      return prev;
+    }
+
+    public void setNext(Node newNext) {
+      next = newNext;
+    }
+
+    public void setPrev(Node newPrev) {
+      prev = newPrev;
+    }
+
+    public E getData() {
+      return val;
+    }
+
+    public E setData(E data) {
+      E oldValue = val;
+      val = data;
+      return oldValue;
+    }
+
+    public String toString() {
+      return "" + data;
+    }
+  }
 
 }
