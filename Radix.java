@@ -1,29 +1,26 @@
 import java.util.*;
+
 public class Radix {
   @SuppressWarnings("unchecked")
   public static void radixsort(int[] data) {
-    /*
-    int repeatTimes = 0;
-    int counter = 0;
-    MyLinkedList<Integer>[] buckets = new MyLinkedList[20];
-    for (int x = 0; x < data.length; x++) {
-      counter = countDigits(data[x]);
-      if (counter > repeatTimes) repeatTimes = counter;
-    }
-    counter = 0;
-    while (counter < repeatTimes) {
+    if (data.length == 0) System.out.println("This array is empty!");
 
-    }
-    */
-    MyLinkedList<Integer>[] buckets = new MyLinkedList[20];
-    int divNum = 10;
-    int curNum = 0;
+
+    //Finds the maximum amount of digits in []data in any of its numbers
+    int maxVal = data[0];
     for (int x = 0; x < data.length; x++) {
-      curNum = data[x]%10;
-      System.out.println(curNum);
-      buckets[Math.abs(curNum)].add(data[x]);
+      if (data[x] > maxVal) maxVal = data[x];
     }
-    System.out.println(buckets);
+    int digitCount = countDigits(maxVal);
+
+    //Creates the buckets
+    MyLinkedList<Integer>[] buckets = new MyLinkedList[20];
+    for (int x = 0; x < buckets.length; x++) {
+      buckets[x] = new MyLinkedList();
+    }
+
+
+    //do the actual sort now lol 
   }
 
   private static int countDigits(int num) {
@@ -34,6 +31,8 @@ public class Radix {
     }
     return digits;
   }
+
+
 
   public static void main(String[] args) {
     int[] testArr = {12,13,21,4,43,32,0,1};
