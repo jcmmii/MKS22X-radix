@@ -24,9 +24,12 @@ public class Radix {
     //amount of times this operation is repeated is the amount of digits in the greatest number
     for (int repeatTimes = 0; repeatTimes < digitCount; repeatTimes++) {
       for (int index = 0; index < data.length; index++) {
+        /*
         double tenPow = Math.pow(10,repeatTimes);
         int number = data[index] / (int)tenPow;
         int result = number % 10;
+        */
+        int result = (data[index]/(int)Math.pow(10,repeatTimes))%10;
             //System.out.println("TRIAL: " + repeatTimes + " NUMBER: " + data[index] + " RESULT: " + result);
       if (data[index] > 0) {
         buckets[10+Math.abs(result)].add(data[index]);
@@ -42,7 +45,7 @@ public class Radix {
       for (int c = 0; c < data.length; c++) {
         data[c] = (int)values.removeFront(); //(int) typecasting required as it would just be an Object otherwise
       }
-            //System.out.println(Arrays.toString(data));
+            System.out.println(Arrays.toString(data));
     }
   }
 
