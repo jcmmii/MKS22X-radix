@@ -47,9 +47,9 @@ public class MyLinkedList<E>{
       other.length = 0;  //other linkedlist is cleared
       other.start = null;
       other.end = null;
-    } else {
+    } else if (other.length > 0){
       end.setNext(other.start);     //links start and end
-      other.start.setPrev(this.end);
+      other.start.setPrev(end);
       length = this.length + other.length; //length is total length of the two lists
       end = other.end; //end is updated
       other.length = 0;  //other linkedlist is cleared
