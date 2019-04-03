@@ -35,18 +35,18 @@ public class Radix {
         }
       }
       //for each bucket, go through and take values, extend to values linkedlist
-      for (int i = 0; i < buckets.length; i++) {
+      for (int i = 0; i < buckets.length; i++) {  //buckets.length == 20;
         values.extend(buckets[i]);
       }
       //actually assign the values in the values linkedlist to data
       for (int c = 0; c < data.length; c++) {
-        int assign = (int)values.removeFront();
-        data[c] = assign;
+        data[c] = (int)values.removeFront(); //(int) typecasting required as it would just be an Object otherwise
       }
             //System.out.println(Arrays.toString(data));
     }
   }
 
+  //helper method counting digits in a single number
   private static int countDigits(int num) {
     int digits = 0;
     while (num > 0) {
@@ -56,7 +56,6 @@ public class Radix {
     return digits;
   }
 
-/*
   public static void main(String[] args) {
     int[] testArr = {12,13,21,4,43,32,0,1};
     radixsort(testArr);
@@ -65,5 +64,5 @@ public class Radix {
     int[] testArr3 = {0,0,0,0,-1,1};
     radixsort(testArr3);
   }
-*/
+
 }
