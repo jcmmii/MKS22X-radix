@@ -45,7 +45,7 @@ public class Radix {
       for (int c = 0; c < data.length; c++) {
         data[c] = (int)values.removeFront(); //(int) typecasting required as it would just be an Object otherwise
       }
-            System.out.println(Arrays.toString(data));
+          //  System.out.println(Arrays.toString(data));
     }
   }
 
@@ -59,6 +59,7 @@ public class Radix {
     return digits;
   }
 
+/*
   public static void main(String[] args) {
     int[] testArr = {12,13,21,4,43,32,0,1};
     radixsort(testArr);
@@ -67,5 +68,6 @@ public class Radix {
     int[] testArr3 = {0,0,0,0,-1,1};
     radixsort(testArr3);
   }
+*/
 
 }
