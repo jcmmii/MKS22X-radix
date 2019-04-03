@@ -18,6 +18,7 @@ public class Radix {
     for (int x = 0; x < buckets.length; x++) {
       buckets[x] = new MyLinkedList();
     }
+    MyLinkedList values = new MyLinkedList();
 
     //math.pw(num,exp)
     for (int repeatTimes = 0; repeatTimes < digitCount; repeatTimes++) {
@@ -25,13 +26,25 @@ public class Radix {
         double tenPow = Math.pow(10,repeatTimes);
         int number = data[index] / (int)tenPow;
         int result = number % 10;
+        System.out.println("TRIAL: " + repeatTimes + " NUMBER: " + data[index] + " RESULT: " + result);
+      //  System.out.println(data[index]);
+      //  System.out.println(result);
       if (data[index] > 0) {
         buckets[10+Math.abs(result)].add(data[index]);
       } else {
         buckets[9-Math.abs(result)].add(data[index]);
         }
       }
+      /*
       //System.out.println(Arrays.toString(buckets));
+      for (int i = 0; i < buckets.length; i++) {
+        values.extend(buckets[i]);
+      }
+      for (int c = 0; c < data.length; c++) {
+        data[c] = (int) values.removeFront();
+      }
+    //  System.out.println(Arrays.toString(data));
+    */
     }
   }
 
