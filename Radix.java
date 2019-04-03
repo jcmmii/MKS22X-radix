@@ -3,8 +3,8 @@ import java.util.*;
 public class Radix {
   @SuppressWarnings("unchecked")
   public static void radixsort(int[] data) {
-    if (data.length == 0) return; //if empty array == essentially sorted already
-    //System.out.println("This array is empty!");
+    if (data.length == 0) return; //an empty array is essentially already sorted
+        //System.out.println("This array is empty!");
 
     //Finds the maximum amount of digits in []data in any of its numbers
     int maxVal = data[0];
@@ -21,26 +21,29 @@ public class Radix {
     MyLinkedList values = new MyLinkedList();
 
     //Actual sorting algorithm
+    //amount of times this operation is repeated is the amount of digits in the greatest number
     for (int repeatTimes = 0; repeatTimes < digitCount; repeatTimes++) {
       for (int index = 0; index < data.length; index++) {
         double tenPow = Math.pow(10,repeatTimes);
         int number = data[index] / (int)tenPow;
         int result = number % 10;
-    //    System.out.println("TRIAL: " + repeatTimes + " NUMBER: " + data[index] + " RESULT: " + result);
+            //System.out.println("TRIAL: " + repeatTimes + " NUMBER: " + data[index] + " RESULT: " + result);
       if (data[index] > 0) {
         buckets[10+Math.abs(result)].add(data[index]);
       } else {
         buckets[9-Math.abs(result)].add(data[index]);
         }
       }
+      //for each bucket, go through and take values, extend to values linkedlist
       for (int i = 0; i < buckets.length; i++) {
         values.extend(buckets[i]);
       }
+      //actually assign the values in the values linkedlist to data
       for (int c = 0; c < data.length; c++) {
         int assign = (int)values.removeFront();
-        data[c] = assign
+        data[c] = assign;
       }
-      System.out.println(Arrays.toString(data));
+            //System.out.println(Arrays.toString(data));
     }
   }
 
@@ -53,6 +56,7 @@ public class Radix {
     return digits;
   }
 
+/*
   public static void main(String[] args) {
     int[] testArr = {12,13,21,4,43,32,0,1};
     radixsort(testArr);
@@ -61,5 +65,5 @@ public class Radix {
     int[] testArr3 = {0,0,0,0,-1,1};
     radixsort(testArr3);
   }
-
+*/
 }
