@@ -6,7 +6,6 @@ public class Radix {
     if (data.length == 0) return;
     //System.out.println("This array is empty!");
 
-
     //Finds the maximum amount of digits in []data in any of its numbers
     int maxVal = data[0];
     for (int x = 0; x < data.length; x++) {
@@ -23,12 +22,17 @@ public class Radix {
     //math.pw(num,exp)
     for (int repeatTimes = 0; repeatTimes < digitCount; repeatTimes++) {
       for (int index = 0; index < data.length; index++) {
-        int num = Math.pow(data[i]) % 10;
-        
+        double tenPow = Math.pow(10,repeatTimes);
+        int number = data[index] / (int)tenPow;
+        int result = number % 10;
+      if (data[index] > 0) {
+        buckets[10+Math.abs(result)].add(data[index]);
+      } else {
+        buckets[9-Math.abs(result)].add(data[index]);
+        }
       }
+      //System.out.println(Arrays.toString(buckets));
     }
-
-
   }
 
   private static int countDigits(int num) {
