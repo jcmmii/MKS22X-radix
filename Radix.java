@@ -3,7 +3,8 @@ import java.util.*;
 public class Radix {
   @SuppressWarnings("unchecked")
   public static void radixsort(int[] data) {
-    if (data.length == 0) System.out.println("This array is empty!");
+    if (data.length == 0) return;
+    //System.out.println("This array is empty!");
 
 
     //Finds the maximum amount of digits in []data in any of its numbers
@@ -19,8 +20,15 @@ public class Radix {
       buckets[x] = new MyLinkedList();
     }
 
+    //math.pw(num,exp)
+    for (int repeatTimes = 0; repeatTimes < digitCount; repeatTimes++) {
+      for (int index = 0; index < data.length; index++) {
+        int num = Math.pow(data[i]) % 10;
+        
+      }
+    }
 
-    //do the actual sort now lol 
+
   }
 
   private static int countDigits(int num) {
@@ -32,10 +40,9 @@ public class Radix {
     return digits;
   }
 
-
-
   public static void main(String[] args) {
     int[] testArr = {12,13,21,4,43,32,0,1};
     radixsort(testArr);
   }
+
 }
