@@ -3,7 +3,7 @@ import java.util.*;
 public class Radix {
   @SuppressWarnings("unchecked")
   public static void radixsort(int[] data) {
-    if (data.length == 0) return;
+    if (data.length == 0) return; //if empty array == essentially sorted already
     //System.out.println("This array is empty!");
 
     //Finds the maximum amount of digits in []data in any of its numbers
@@ -20,31 +20,27 @@ public class Radix {
     }
     MyLinkedList values = new MyLinkedList();
 
-    //math.pw(num,exp)
+    //Actual sorting algorithm
     for (int repeatTimes = 0; repeatTimes < digitCount; repeatTimes++) {
       for (int index = 0; index < data.length; index++) {
         double tenPow = Math.pow(10,repeatTimes);
         int number = data[index] / (int)tenPow;
         int result = number % 10;
-        System.out.println("TRIAL: " + repeatTimes + " NUMBER: " + data[index] + " RESULT: " + result);
-      //  System.out.println(data[index]);
-      //  System.out.println(result);
+    //    System.out.println("TRIAL: " + repeatTimes + " NUMBER: " + data[index] + " RESULT: " + result);
       if (data[index] > 0) {
         buckets[10+Math.abs(result)].add(data[index]);
       } else {
         buckets[9-Math.abs(result)].add(data[index]);
         }
       }
-      /*
-      //System.out.println(Arrays.toString(buckets));
       for (int i = 0; i < buckets.length; i++) {
         values.extend(buckets[i]);
       }
       for (int c = 0; c < data.length; c++) {
-        data[c] = (int) values.removeFront();
+        int assign = (int)values.removeFront();
+        data[c] = assign
       }
-    //  System.out.println(Arrays.toString(data));
-    */
+      System.out.println(Arrays.toString(data));
     }
   }
 
@@ -60,6 +56,10 @@ public class Radix {
   public static void main(String[] args) {
     int[] testArr = {12,13,21,4,43,32,0,1};
     radixsort(testArr);
+    int[] testArr2 = {1000,100,123,-5,-2020,0,8,9123,10,-99};
+    radixsort(testArr2);
+    int[] testArr3 = {0,0,0,0,-1,1};
+    radixsort(testArr3);
   }
 
 }
